@@ -211,7 +211,23 @@ function updateDashboard() {
     document.getElementById("doneCount").textContent = completed;
     document.getElementById("pendingCount").textContent = pending;
     document.getElementById("overdueCount").textContent = overdue;
+const todayTasks = tasks.filter(task =>
+    task.dueDate === todayString
+);
 
+const todayCompleted = todayTasks.filter(task =>
+    task.completed
+).length;
+
+const productivityScore = todayTasks.length === 0
+    ? 0
+    : Math.round((todayCompleted / todayTasks.length) * 100);
+
+document.getElementById("productivityScore").textContent =
+    `${productivityScore}%`;
+
+document.getElementById("productivityScore").textContent =
+    `${productivityScore}%`;
     document.getElementById("progressText").textContent =
         `${progress}%`;
 
